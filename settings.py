@@ -1,4 +1,4 @@
-password = "zzxxccc111"
+password = "zzxxcc111"
 MONGO_URI = "mongodb+srv://kel:" + password + "@werf-11lw7.azure.mongodb.net/test?retryWrites=true&w=majority"
 
 
