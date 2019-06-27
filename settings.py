@@ -1,4 +1,6 @@
-MONGO_URI = "mongodb+srv://kel:zzxxcc111@werf-11lw7.azure.mongodb.net/test?retryWrites=true&w=majority"
+password = 'zzxxccc111'
+MONGO_URI = "mongodb+srv://kel:" + password + "@werf-11lw7.azure.mongodb.net/test?retryWrites=true&w=majority"
+
 
 # По умолчанию Eve запускает API в режиме "read-only" (т.е. поддерживаются только GET запросы),
 # мы включаем поддержку методов POST, PUT, PATCH, DELETE.
@@ -9,15 +11,13 @@ DOMAIN = {
     # Описываем ресурс `/users`
     'users': {
         # Здесь мы описываем модель данных. Для валидации используется модуль Cerberus от автора Eve.
-        # Вы можете ознакомиться с ним в официальной документации модуля http://docs.python-cerberus.org/en/stable/.
-        # Либо прочитать заметки в официальной документации EVE http://python-eve.org/validation.html#validation.
         'schema': {
             'username': {
                 'type': 'string',
                 'minlength': 5,
                 'maxlength': 32,
                 'required': True,
-                # уникальное поле (индекс не создаётся, просто значение должно быть уникальным)
+                # уникальное поле (индекс не создаётся, значение должно быть уникальным)
                 'unique': True,
             },
             'firstname': {
@@ -32,32 +32,29 @@ DOMAIN = {
                 'maxlength': 15,
                 'required': True,
             },
-            'role': {
-
-                'type': 'list',  # тип: список
-                'allowed': ["author", "contributor"],  # разрешаем использовать значения: "author", "contributor"
-            },
-            'location': {
-                'type': 'dict',  # тип: словарь
-                # описываем "схему" словаря
-                'schema': {
-                    'address': {'type': 'string'},
-                    'city': {'type': 'string'}
-                },
-            },
             'born': {
                 'type': 'datetime',
             },
             'active': {
                 'type': 'boolean',
                 'default': True
+            },
+            'preferences': {
+                'type': 'list',  # тип: список
+                'default': [],   # по умолчанию: пустой список
+                # описываем "схему" списка
+                'schema': {
+                    'type': 'string',
+                    'minlength': 5,
+                    'maxlength': 32,
+                }
             }
         }
     },
 
-    # Описываем ресурс `/groups`
-    'groups': {
-        # Описываем модель данных (см. выше).
+    # Описываем ресурс `/events`
+    'events': {
+        # Описываем модель данных
         'schema': {
             'title': {
                 'type': 'string',
@@ -66,6 +63,16 @@ DOMAIN = {
                 'required': True,
                 'unique': True
             },
+            'tags': {
+                'type': 'list',
+                'default': [],  # по умолчанию: пустой список
+                # описываем "схему" списка
+                'schema': {
+                    'type': 'string',
+                    'minlength': 5,
+                    'maxlength': 32,
+                }
+             },
             'users': {
                 'type': 'list',  # тип: список
                 'default': [],  # по умолчанию: пустой список
@@ -76,7 +83,7 @@ DOMAIN = {
                     'data_relation': {
                         'resource': 'users',  # на ресурс `users` (который мы описали выше)
                         'field': '_id',  # на поле `_id`
-                        'embeddable': True
+                        'embeddable': True #разрешено встраивание модели
                     }
                 }
             }
