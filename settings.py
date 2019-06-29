@@ -21,6 +21,14 @@ DOMAIN = {
                 # уникальное поле (индекс не создаётся, значение должно быть уникальным)
                 'unique': True,
             },
+			'email': {
+                'type': 'string',
+                'minlength': 5,
+                'maxlength': 32,
+                'required': True,
+                # уникальное поле (индекс не создаётся, значение должно быть уникальным)
+                'unique': True,
+            },
             'firstname': {
                 'type': 'string',
                 'minlength': 1,
