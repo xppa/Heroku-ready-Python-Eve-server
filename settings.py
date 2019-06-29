@@ -7,7 +7,7 @@ MONGO_URI = "mongodb+srv://kel:" + password + "@werf-11lw7.azure.mongodb.net/tes
 RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
-X_DOMAINS = *
+X_DOMAINS = '*'
 
 DOMAIN = {
     # Описываем ресурс `/users`
