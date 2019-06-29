@@ -48,6 +48,10 @@ DOMAIN = {
                 'type': 'boolean',
                 'default': True
             },
+			'sx': {
+                'type': 'boolean',
+                'nullable': 'True'
+            },
             'preferences': {
                 'type': 'list',  # тип: список
                 'default': [],   # по умолчанию: пустой список
