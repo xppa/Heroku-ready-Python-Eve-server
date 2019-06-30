@@ -52,7 +52,7 @@ DOMAIN = {
             },
 			'sx': {
                 'type': 'boolean',
-                'default': True
+                'default': False
             },
             'preferences': {
                 'type': 'list',  # тип: список
