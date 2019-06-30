@@ -8,6 +8,8 @@ RESOURCE_METHODS = ['GET', 'POST', 'DELETE']
 ITEM_METHODS = ['GET', 'PATCH', 'PUT', 'DELETE']
 
 X_DOMAINS = '*'
+X_HEADERS = '*'
+
 
 DOMAIN = {
     # Описываем ресурс `/users`
